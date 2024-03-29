@@ -1,9 +1,11 @@
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
+import { RES_PER_PAGE } from "../utils/constants.js";
 
 interface filterType {
   label: string;
   value: string;
+  method?: string;
 }
 interface sortByType {
   label: string;
@@ -12,33 +14,48 @@ interface sortByType {
 export async function getAllBookings({
   filter,
   sortBy,
+  currentPage,
 }: {
   filter: filterType | null;
-  sortBy: string;
+  sortBy: { field: string; direction: string };
+  currentPage: number | null;
 }) {
-  let query = supabase
+  let query: any = supabase
     .from("bookings")
     .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName)"
+      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName)",
+      { count: "exact" }
     );
 
   // filter:
-  if (filter !== null) query = query.eq(filter.label, filter.value);
+  if (filter) query = query[filter.method || "eq"](filter.label, filter.value);
 
-  const { data, error } = await query;
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
+
+  if (currentPage) {
+    const from = (currentPage - 1) * RES_PER_PAGE;
+    // const to = currentPage * RES_PER_PAGE;
+    const to = from + RES_PER_PAGE - 1;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error(error);
     throw new Error("No Booking not found");
   }
 
-  return data;
+  return { data, count };
 }
 
 export async function getBooking(id: string) {
   const { data, error } = await supabase
     .from("bookings")
-    .select("*")
+    .select("*, cabins(*), guests(*)")
     .eq("id", id)
     .single();
 
@@ -51,7 +68,7 @@ export async function getBooking(id: string) {
 }
 
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
-export async function getBookingsAfterDate(date: Date) {
+export async function getBookingsAfterDate(date: Date | string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("created_at, totalPrice, extrasPrice")
@@ -67,7 +84,7 @@ export async function getBookingsAfterDate(date: Date) {
 }
 
 // Returns all STAYS that are were created after the given date
-export async function getStaysAfterDate(date: Date) {
+export async function getStaysAfterDate(date: Date | string) {
   const { data, error } = await supabase
     .from("bookings")
     // .select('*')
