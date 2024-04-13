@@ -152,8 +152,8 @@ const Discount = styled.div`
 //   );
 // }
 
-export function CabinRow({ cabin }) {
-  const [openForm, setOpenForm] = useState(false);
+export function CabinRow({ cabin }: any) {
+  // const [openForm, setOpenForm] = useState(false);
   const {
     id: cabinId,
     name,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
@@ -12,7 +12,7 @@ function LoginForm() {
 
   const { login, isPending } = useLogin();
 
-  function handleSubmit(e) {
+  function handleSubmit(e:FormEvent) {
     e.preventDefault();
     if (!email || !password) return null;
 

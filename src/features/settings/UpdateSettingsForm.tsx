@@ -23,7 +23,7 @@ function UpdateSettingsForm() {
     breakfastPrice: 0,
   };
 
-  const handleUpdate = (e, field) => {
+  const handleUpdate = (e: any, field: any) => {
     const { value } = e.target;
     if (!value) return;
 

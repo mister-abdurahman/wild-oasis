@@ -69,7 +69,7 @@ const Guest = styled.div`
   }
 `;
 
-const Price = styled.div`
+const Price:any = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,9 +77,9 @@ const Price = styled.div`
   border-radius: var(--border-radius-sm);
   margin-top: 2.4rem;
 
-  background-color: ${(props) =>
+  background-color: ${(props: any) =>
     props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
-  color: ${(props) =>
+  color: ${(props:any) =>
     props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
   & p:last-child {
@@ -102,7 +102,7 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-function BookingDataBox({ booking }) {
+function BookingDataBox({ booking }:any) {
   const {
     created_at,
     startDate,

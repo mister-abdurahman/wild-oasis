@@ -1,5 +1,5 @@
 // import { create } from "domain";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
@@ -30,15 +30,15 @@ const StyledToggle = styled.button`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledList: any = styled.ul`
   position: fixed;
 
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-md);
 
-  right: ${(props) => props.position.x}px;
-  top: ${(props) => props.position.y}px;
+  right: ${(props: any) => props.position.x}px;
+  top: ${(props: any) => props.position.y}px;
 `;
 
 const StyledButton = styled.button`
@@ -66,9 +66,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const MenuContext = createContext();
+const MenuContext = createContext({});
 
-function Menus({ children }) {
+function Menus({ children }: any) {
   const [openId, setOpenId] = useState("");
   const [position, setPosition] = useState(null);
   // const setMenu = (id) => setOpenId(id);
@@ -84,10 +84,12 @@ function Menus({ children }) {
   );
 }
 
-function Toggle({ id, children }) {
-  const { openId, open, close, setPosition } = useContext(MenuContext);
+function Toggle({ id, children }: { id: string; children?: JSX.Element }) {
+  const { openId, open, close, setPosition }: any = useContext(MenuContext);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
+    e.stopPropagation();
+    console.log("click");
     openId === "" || openId !== id ? open(id) : close();
     const rect = e.target.closest("button").getBoundingClientRect(); //get the x and y position of the button
     console.log(rect);
@@ -104,10 +106,11 @@ function Toggle({ id, children }) {
   );
 }
 
-function List({ id, children }) {
-  const { openId, open, position, close } = useContext(MenuContext);
+function List({ id, children }: any) {
+  const { openId, position, close }: any = useContext(MenuContext);
   // const ref = useRef();
-  const ref = UseOutsideClick(close);
+  const ref = UseOutsideClick(close, false);
+
   // useEffect(
   //   function () {
   //     const handleClick = (e) => {
@@ -132,8 +135,8 @@ function List({ id, children }) {
   );
 }
 
-function Button({ children, icon, onClick }) {
-  const { close } = useContext(MenuContext);
+function Button({ children, icon, onClick }: any) {
+  const { close }: any = useContext(MenuContext);
   const handleClick = () => {
     onClick?.();
     close();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function withToggles(WrappedComponent) {
-  return function List(props) {
+export default function withToggles(WrappedComponent: any) {
+  return function List(props: any) {
     const [isOpen, setIsOpen] = useState(true);
     const [isCollapsed, setIsCollapsed] = useState(false);
 

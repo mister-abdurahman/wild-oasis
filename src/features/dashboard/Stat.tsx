@@ -46,7 +46,7 @@ const Value = styled.p`
   /* color: var(--color-grey-600); */
 `;
 
-function Stat({ icon, title, value, color }) {
+function Stat({ icon, title, value, color }:any) {
   return (
     <StyledStat>
       <Icon color={color}>{icon}</Icon>

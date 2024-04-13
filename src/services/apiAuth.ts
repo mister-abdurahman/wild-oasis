@@ -56,8 +56,8 @@ export async function logout() {
   // nothing to return
 }
 
-export async function updateCurrentUser({ password, fullName, avatar }) {
-  let updatedData;
+export async function updateCurrentUser({ password, fullName, avatar }: any) {
+  let updatedData: any;
 
   if (password) updatedData = { password };
   if (fullName) updatedData = { data: { fullName } };

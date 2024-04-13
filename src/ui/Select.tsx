@@ -4,7 +4,7 @@ const StyledSelect = styled.select`
   font-size: 1.4rem;
   padding: 0.8rem 1.2rem;
   border: 1px solid
-    ${(props) =>
+    ${(props: any) =>
       props.type === "white"
         ? "var(--color-grey-100)"
         : "var(--color-grey-300)"};
@@ -14,10 +14,10 @@ const StyledSelect = styled.select`
   box-shadow: var(--shadow-sm);
 `;
 
-const Select = ({ options, value, ...props }) => {
+const Select = ({ options, value, ...props }:any) => {
   return (
     <StyledSelect value={value} {...props}>
-      {options.map((opt) => (
+      {options.map((opt:{value:string, label:string}) => (
         <option value={opt.value} key={opt.value}>
           {opt.label}
         </option>

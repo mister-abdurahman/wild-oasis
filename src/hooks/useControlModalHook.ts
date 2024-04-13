@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 
 const UseOutsideClick = (close: () => void, listenCapturing = true) => {
-  const ref = useRef();
+  const ref: any = useRef();
 
   useEffect(
     function () {
-      function handleClick(e) {
+      function handleClick(e: MouseEvent) {
         if (ref.current && !ref.current.contains(e.target)) {
           console.log("Outside clicked");
           close();

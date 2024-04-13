@@ -51,7 +51,7 @@ const Button = styled.button`
   }
 `;
 
-const Modal = ({ children, onClose }) =>
+const Modal = ({ children, onClose }: any) =>
   createPortal(
     <Overlay>
       <StyledModal>

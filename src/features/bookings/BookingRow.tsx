@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {
-  HiPencil,
   HiTrash,
   HiEye,
   HiArrowUpOnSquare,
@@ -74,7 +73,7 @@ function BookingRow({
     guests: { fullName: guestName },
     cabins: { name: cabinName },
   },
-}) {
+}: any) {
   // console.log(
   //   bookingId,
   //   created_at,
@@ -94,7 +93,7 @@ function BookingRow({
   const navigate = useNavigate();
   // We will not allow editing at this point, as it's too complex for bookings... People just need to delete a booking and create a new one
 
-  const statusToTagName = {
+  const statusToTagName: any = {
     unconfirmed: "blue",
     "checked-in": "green",
     "checked-out": "silver",
@@ -151,12 +150,14 @@ function BookingRow({
                 icon={<HiArrowUpOnSquare />}
                 onClick={() => checkout(bookingId)}
               >
-                Check Out
+                {isCheckingOut ? "Checking out..." : "Check Out"}
               </Menus.Button>
             )}
 
             <Modal.Open opens={"delete"}>
-              <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>
+                {isDeleting ? "Deleting..." : "Delete"}
+              </Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>

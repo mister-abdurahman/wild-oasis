@@ -42,7 +42,7 @@ function BookingDetail() {
   if (isLoading) return <Spinner />;
   if (!booking) return <Empty resourceName="booking" />;
 
-  const statusToTagName = {
+  const statusToTagName: any = {
     unconfirmed: "blue",
     "checked-in": "green",
     "checked-out": "silver",

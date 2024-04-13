@@ -34,7 +34,7 @@ import { Pagination } from "../../ui/Pagination";
 function BookingTable() {
   const { bookings, error, isLoading, count } = useBookings();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const filterParam = searchParams.get("status");
 
   // Filter:
@@ -45,17 +45,17 @@ function BookingTable() {
       break;
     case "checked-out":
       filteredBookings = bookings?.filter(
-        (booking) => booking.status === "checked-out"
+        (booking: { status: string }) => booking.status === "checked-out"
       );
       break;
     case "checked-in":
       filteredBookings = bookings?.filter(
-        (booking) => booking.status === "checked-in"
+        (booking: { status: string }) => booking.status === "checked-in"
       );
       break;
     case "unconfirmed":
       filteredBookings = bookings?.filter(
-        (booking) => booking.status === "unconfirmed"
+        (booking: { status: string }) => booking.status === "unconfirmed"
       );
       break;
     default:
@@ -90,7 +90,7 @@ function BookingTable() {
         {/* Render props! */}
         <Table.Body
           data={filteredBookings}
-          render={(booking) => (
+          render={(booking: any) => (
             <BookingRow key={booking?.id} booking={booking} />
           )}
         />

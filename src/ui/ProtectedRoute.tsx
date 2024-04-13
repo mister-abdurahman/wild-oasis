@@ -12,7 +12,7 @@ const FullPage = styled.div`
   justify-content: center;
 `;
 
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ children }: { children: any }) => {
   const navigate = useNavigate();
   // load authenticated user
   const { isLoading, isAuthenticated } = useUser();

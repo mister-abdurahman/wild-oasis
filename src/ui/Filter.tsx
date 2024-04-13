@@ -11,11 +11,11 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const FilterButton = styled.button`
+const FilterButton:any = styled.button`
   background-color: var(--color-grey-0);
   border: none;
 
-  ${(props) =>
+  ${(props: any) =>
     props.active &&
     css`
       background-color: var(--color-brand-600);
@@ -35,19 +35,19 @@ const FilterButton = styled.button`
   }
 `;
 
-const Filter = ({ filterField, options }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const Filter = ({ filterField, options }: any) => {
+  const [searchParams, setSearchParams]: any = useSearchParams();
 
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
-  const handleClick = (value) => {
+  const handleClick = (value: string) => {
     searchParams.set("page", 1);
     searchParams.set(filterField, value);
     setSearchParams(searchParams);
   };
   return (
     <StyledFilter>
-      {options.map((option) => (
+      {options.map((option: { value: string; label: string }) => (
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}

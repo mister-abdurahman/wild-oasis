@@ -1,10 +1,10 @@
-import React, { ReactNode, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-interface CounterType {
-  count: number;
-  increase: void;
-  decrease: void;
-}
+// interface CounterType {
+//   count: number;
+//   increase: void;
+//   decrease: void;
+// }
 
 const CounterContext = createContext({});
 
@@ -27,18 +27,18 @@ function Counter({ children }: any) {
 }
 
 const Count = () => {
-  const { count } = useContext(CounterContext);
+  const { count }: any = useContext(CounterContext);
   return <span>{count}</span>;
 };
 const Label = ({ children }: { children: React.ReactNode }) => {
   return <p>{children}</p>;
 };
 const Increase = ({ icon }: { icon: string }) => {
-  const { increase } = useContext(CounterContext);
+  const { increase }: any = useContext(CounterContext);
   return <button onClick={increase}>{icon}</button>;
 };
 const Decrease = ({ icon }: { icon: string }) => {
-  const { decrease } = useContext(CounterContext);
+  const { decrease }: any = useContext(CounterContext);
   return <button onClick={decrease}>{icon}</button>;
 };
 

@@ -9,7 +9,6 @@ import { Textarea } from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
 import useCreateCabin from "./useCreateCabin";
 import useEditCabin from "./useEditCabin";
-import { useQueryClient } from "@tanstack/react-query";
 
 // We use react-hook-form to make working with complex and REAL-WORLD forms a lot easier. It handles stuff like user validation and errors. manages the form state for us, etc
 // Validating the user’s data passed through the form is a crucial responsibility for a developer.
@@ -22,19 +21,16 @@ export interface IFormData {
   maxCapacity: number;
   name: string;
   regularPrice: number;
-  image: FileList;
+  image?: any;
 }
 
 // Receives closeModal directly from Modal
-function CreateCabinForm({
-  cabinToEdit = {},
-  closeModal,
-  onCloseModal,
-}: {
-  cabinToEdit: IFormData | {};
-  closeModal: boolean;
-  onCloseModal?: () => void;
-}) {
+function CreateCabinForm({ cabinToEdit = {}, closeModal, onCloseModal }: any) {
+  // {
+  //   cabinToEdit: IFormData | {};
+  //   closeModal: boolean;
+  //   onCloseModal?: () => void;
+  // }
   // const { mutate: createCabin, isLoading: isWorking } = useCreateCabin();
   // const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
   // const isWorking = isWorking || isEditing;
@@ -100,7 +96,7 @@ function CreateCabinForm({
 
   function handleForm(data: IFormData) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
-    console.log(data);
+    console.log(image);
     // if (isEditSession)
     if (editId)
       EditCabin(
@@ -124,7 +120,7 @@ function CreateCabinForm({
       );
   }
 
-  function handleErrors(errors) {
+  function handleErrors(errors: never) {
     console.log(errors);
   }
 

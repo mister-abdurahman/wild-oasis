@@ -1,12 +1,14 @@
+import { FieldError } from "react-hook-form";
 import styled, { css } from "styled-components";
 
-const StyledFormRow = styled.div`
+const StyledFormRow: any = styled.div`
   display: grid;
   align-items: center;
 
-  grid-template-columns: ${(props) =>
+  grid-template-columns: ${(props: any) =>
     props.orientation === "vertical" ? "1fr" : "24rem 1fr 1.2fr"};
-  gap: ${(props) => (props.orientation === "vertical" ? "0.8rem" : "2.4rem")};
+  gap: ${(props: any) =>
+    props.orientation === "vertical" ? "0.8rem" : "2.4rem"};
 
   padding: 1.2rem 0;
 
@@ -19,14 +21,14 @@ const StyledFormRow = styled.div`
   }
 
   &:not(:last-child) {
-    border-bottom: ${(props) =>
+    border-bottom: ${(props: any) =>
       props.orientation === "vertical"
         ? "none"
         : "1px solid var(--color-grey-100)"};
   }
 
   /* Special treatment if the row contains buttons, and if it's NOT a vertical row */
-  ${(props) =>
+  ${(props: any) =>
     props.orientation !== "vertical" &&
     css`
       &:has(button) {
@@ -48,7 +50,7 @@ const Error = styled.span`
 
 interface IFormRow {
   label?: string;
-  error?: string;
+  error?: any;
   children: any;
   orientation?: string;
 }

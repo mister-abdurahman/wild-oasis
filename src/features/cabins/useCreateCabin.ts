@@ -7,8 +7,7 @@ const useCreateCabin = () => {
   const queryClient = useQueryClient();
 
   const { mutate: CreateCabin, isPending: isCreating } = useMutation({
-    mutationFn: ({ newCabin, id }: { newCabin: IFormData; id: number }) =>
-      createEditCabin(newCabin, id),
+    mutationFn: ({ newCabin, id }: any) => createEditCabin(newCabin, id),
     onSuccess: () => {
       toast.success("Cabin successfully created");
       queryClient.invalidateQueries({

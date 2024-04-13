@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { faker } from "@faker-js/faker";
 import "./styles.css";
 import withToggles from "./HOC-test";
@@ -11,14 +10,18 @@ const products = Array.from({ length: 20 }, () => {
   };
 });
 
-const companies = Array.from({ length: 15 }, () => {
-  return {
-    companyName: faker.company.name(),
-    phrase: faker.company.catchPhrase(),
-  };
-});
+// const companies = Array.from({ length: 15 }, () => {
+//   return {
+//     companyName: faker.company.name(),
+//     phrase: faker.company.catchPhrase(),
+//   };
+// });
 
-function ProductItem({ product }) {
+function ProductItem({
+  product,
+}: {
+  product: { productName: string; price: string; description: string };
+}) {
   return (
     <li className="product">
       <p className="product-name">{product.productName}</p>
@@ -28,52 +31,52 @@ function ProductItem({ product }) {
   );
 }
 
-function CompanyItem({ company, defaultVisibility }) {
-  const [isVisible, setIsVisisble] = useState(defaultVisibility);
+// function CompanyItem({ company, defaultVisibility }:{company: {companyName:string, phrase: string}, defaultVisibility: any}) {
+//   const [isVisible, setIsVisisble] = useState(defaultVisibility);
 
-  return (
-    <li
-      className="company"
-      onMouseEnter={() => setIsVisisble(true)}
-      onMouseLeave={() => setIsVisisble(false)}
-    >
-      <p className="company-name">{company.companyName}</p>
-      {isVisible && (
-        <p className="company-phrase">
-          <strong>About:</strong> {company.phrase}
-        </p>
-      )}
-    </li>
-  );
-}
+//   return (
+//     <li
+//       className="company"
+//       onMouseEnter={() => setIsVisisble(true)}
+//       onMouseLeave={() => setIsVisisble(false)}
+//     >
+//       <p className="company-name">{company.companyName}</p>
+//       {isVisible && (
+//         <p className="company-phrase">
+//           <strong>About:</strong> {company.phrase}
+//         </p>
+//       )}
+//     </li>
+//   );
+// }
 
-function List({ title, items, render }) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+// function List({ title, items, render }:any) {
+//   const [isOpen, setIsOpen] = useState(true);
+//   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const displayItems = isCollapsed ? items.slice(0, 3) : items;
+//   const displayItems = isCollapsed ? items.slice(0, 3) : items;
 
-  function toggleOpen() {
-    setIsOpen((isOpen) => !isOpen);
-    setIsCollapsed(false);
-  }
+//   function toggleOpen() {
+//     setIsOpen((isOpen) => !isOpen);
+//     setIsCollapsed(false);
+//   }
 
-  return (
-    <div className="list-container">
-      <div className="heading">
-        <h2>{title}</h2>
-        <button onClick={toggleOpen}>
-          {isOpen ? <span>&or;</span> : <span>&and;</span>}
-        </button>
-      </div>
-      {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
+//   return (
+//     <div className="list-container">
+//       <div className="heading">
+//         <h2>{title}</h2>
+//         <button onClick={toggleOpen}>
+//           {isOpen ? <span>&or;</span> : <span>&and;</span>}
+//         </button>
+//       </div>
+//       {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
 
-      <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
-        {isCollapsed ? `Show all ${items.length}` : "Show less"}
-      </button>
-    </div>
-  );
-}
+//       <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
+//         {isCollapsed ? `Show all ${items.length}` : "Show less"}
+//       </button>
+//     </div>
+//   );
+// }
 
 const ProductListWithToggles = withToggles(ProductList);
 
@@ -111,12 +114,18 @@ export default function App() {
 }
 
 // LATER: Let's say we got this component from a 3rd-party library, and can't change it. But we still want to add the 2 toggle functionalities to it
-function ProductList({ title, items }) {
+function ProductList({ title, items }: any) {
   return (
     <ul className="list">
-      {items.map((product) => (
-        <ProductItem key={product.productName} product={product} />
-      ))}
+      {items.map(
+        (product: {
+          productName: string;
+          price: string;
+          description: string;
+        }) => (
+          <ProductItem key={product.productName} product={product} />
+        )
+      )}
     </ul>
   );
 }

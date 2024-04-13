@@ -12,13 +12,13 @@ export const StyledTable = styled.div`
 
 export const CommonRow = styled.header`
   display: grid;
-  grid-template-columns: ${(props) => props.columns};
+  grid-template-columns: ${(props: any) => props.columns};
   column-gap: 2.4rem;
   align-items: center;
   transition: none;
 `;
 
-export const StyledHeader = styled(CommonRow)`
+export const StyledHeader: any = styled(CommonRow)`
   padding: 1.6rem 2.4rem;
 
   background-color: var(--color-grey-50);
@@ -33,7 +33,7 @@ export const StyledBody = styled.section`
   margin: 0.4rem 0;
 `;
 
-export const StyledRow = styled(CommonRow)`
+export const StyledRow: any = styled(CommonRow)`
   padding: 1.2rem 2.4rem;
 
   &:not(:last-child) {
@@ -59,8 +59,8 @@ export const Empty = styled.p`
   margin: 2.4rem;
 `;
 
-const TableContext = createContext();
-function Table({ columns, children }) {
+const TableContext = createContext({});
+function Table({ columns, children }: any) {
   return (
     <TableContext.Provider value={{ columns }}>
       <StyledTable role="table">{children}</StyledTable>
@@ -68,8 +68,8 @@ function Table({ columns, children }) {
   );
 }
 
-function Header({ children }) {
-  const { columns } = useContext(TableContext);
+function Header({ children }: any) {
+  const { columns }: any = useContext(TableContext);
 
   return (
     <StyledHeader role="row" columns={columns} as={"header"}>
@@ -78,13 +78,13 @@ function Header({ children }) {
   );
 }
 
-function Body({ data, render }) {
+function Body({ data, render }: any) {
   if (!data.length) return <Empty>No data to display at the moment</Empty>;
   return data.map(render);
 }
 
-function Row({ children }) {
-  const { columns } = useContext(TableContext);
+function Row({ children }: { children: any; role?: string }) {
+  const { columns }: any = useContext(TableContext);
   return <StyledRow columns={columns}>{children}</StyledRow>;
 }
 

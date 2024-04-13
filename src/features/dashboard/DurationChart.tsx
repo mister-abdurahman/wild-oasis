@@ -116,17 +116,17 @@ const startDataDark = [
 
 // how the fn works:
 // loop through the "confirmedStays" and according to the numNights, increase the involved startData by 1. so the real deal is the startData, we just use the confirmedStays to achieve our desired result. ✔
-function prepareData(startData, stays) {
+function prepareData(startData: any, stays: any) {
   // A bit ugly code, but sometimes this is what it takes when working with real data 😅
 
-  function incArrayValue(arr, field) {
-    return arr.map((obj) =>
+  function incArrayValue(arr: any, field: any) {
+    return arr.map((obj: { duration: string; value: string }) =>
       obj.duration === field ? { ...obj, value: obj.value + 1 } : obj
     );
   }
 
   const data = stays
-    .reduce((arr, cur) => {
+    .reduce((arr: any, cur: { numNights: number }) => {
       const num = cur.numNights;
       if (num === 1) return incArrayValue(arr, "1 night");
       if (num === 2) return incArrayValue(arr, "2 nights");
@@ -138,12 +138,12 @@ function prepareData(startData, stays) {
       if (num >= 21) return incArrayValue(arr, "21+ nights");
       return arr;
     }, startData)
-    .filter((obj) => obj.value > 0);
+    .filter((obj: { value: number }) => obj.value > 0);
 
   return data;
 }
 
-const DurationChart = ({ confirmedStays }) => {
+const DurationChart = ({ confirmedStays }: { confirmedStays: any }) => {
   const { isDarkMode } = useDarkMode();
   const startData = isDarkMode ? startDataDark : startDataLight;
 
@@ -165,7 +165,7 @@ const DurationChart = ({ confirmedStays }) => {
             cy="50%"
             paddingAngle={3}
           >
-            {data?.map((entry) => (
+            {data?.map((entry: { color: string; duration: string }) => (
               <Cell
                 fill={entry.color}
                 stroke={entry.color}
@@ -177,7 +177,7 @@ const DurationChart = ({ confirmedStays }) => {
           <Legend
             verticalAlign="middle"
             align="right"
-            width="30%"
+            width={130}
             layout="vertical"
             iconSize={15}
             iconType="circle"

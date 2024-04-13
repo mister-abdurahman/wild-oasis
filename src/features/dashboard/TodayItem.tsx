@@ -27,10 +27,19 @@ const Guest = styled.div`
   font-weight: 500;
 `;
 
-function TodayItem({ stay }) {
+function TodayItem({
+  stay,
+}: {
+  stay: {
+    id: string;
+    status: string;
+    guests: { countryFlag: string; fullName: string; country: string };
+    numNights: number;
+  };
+}) {
   const { id, status, guests, numNights } = stay;
 
-  const statusToAction = {
+  const statusToAction: any = {
     unconfirmed: {
       action: "arriving",
       tag: "green",

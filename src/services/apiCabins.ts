@@ -1,4 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
 import supabase, { supabaseUrl } from "./supabase";
 
 export const getCabins = async () => {
@@ -13,7 +12,7 @@ export const getCabins = async () => {
   return data;
 };
 
-export const createEditCabin = async (newCabin, id) => {
+export const createEditCabin = async (newCabin: any, id: number) => {
   console.log("image var is...:", newCabin);
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
   // create cabin

@@ -4,6 +4,7 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import useUpdateUser from "./useUpdateUser";
+import { FormEvent } from "react";
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -11,11 +12,11 @@ function UpdatePasswordForm() {
 
   const { updateCurrentUser, isUpdating } = useUpdateUser();
 
-  function onSubmit({ password }) {
+  function onSubmit({ password }: any) {
     updateCurrentUser({ password }, { onSuccess: () => reset() });
   }
 
-  function handleReset(e) {
+  function handleReset(e: FormEvent) {
     e.preventDefault();
     reset();
   }
