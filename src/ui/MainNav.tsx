@@ -7,6 +7,7 @@ import {
   HiOutlineHomeModern,
   HiOutlineUsers,
 } from "react-icons/hi2";
+import { IconContext } from "react-icons";
 
 const NavList = styled.ul`
   display: flex;
@@ -53,38 +54,81 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const StyledSpanText = styled.span`
+  @media only screen and (max-width: 1024px) {
+    display: none;
+    /* font-size: 1.2rem; */
+  }
+`;
+
+const Icon = styled.div`
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: 1024px) {
+    margin: 0 auto;
+  }
+
+  & svg {
+    /* background-color: var(--color-grey-600); */
+
+    @media only screen and (max-width: 1024px) {
+      width: 5rem;
+      height: 5rem;
+      color: var(--color-${(props) => props.color}-700);
+    }
+    @media only screen and (max-width: 500px) {
+      width: 3rem;
+      height: 3rem;
+      color: var(--color-${(props) => props.color}-700);
+    }
+  }
+`;
+
 function MainNav() {
   return (
     <nav>
       <NavList>
         <li>
           <StyledNavLink to="/dashboard">
-            <HiOutlineHome />
-            <span>Home</span>
+            <Icon>
+              <HiOutlineHome />
+            </Icon>
+            <StyledSpanText>Home</StyledSpanText>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/bookings">
-            <HiOutlineCalendarDays />
-            <span>Bookings</span>
+            <Icon>
+              <HiOutlineCalendarDays />
+            </Icon>
+            <StyledSpanText>Bookings</StyledSpanText>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/cabins">
-            <HiOutlineHomeModern />
-            <span>Cabins</span>
+            <Icon>
+              <HiOutlineHomeModern />
+            </Icon>
+            <StyledSpanText>Cabins</StyledSpanText>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/users">
-            <HiOutlineUsers />
-            <span>Users</span>
+            <Icon>
+              <HiOutlineUsers />
+            </Icon>
+            <StyledSpanText>Users</StyledSpanText>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/settings">
-            <HiOutlineCog6Tooth />
-            <span>Settings</span>
+            <Icon>
+              <HiOutlineCog6Tooth />
+            </Icon>
+            <StyledSpanText>Settings</StyledSpanText>
           </StyledNavLink>
         </li>
       </NavList>

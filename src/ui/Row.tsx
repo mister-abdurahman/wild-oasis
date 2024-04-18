@@ -16,6 +16,10 @@ const Row: any = styled.div`
       flex-direction: column;
       gap: 1.6rem;
     `}
+
+    @media only screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
 `;
 
 Row.defaultProps = {

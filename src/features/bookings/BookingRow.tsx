@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {
   HiTrash,
@@ -40,7 +40,7 @@ const Cabin = styled.div`
   font-family: "Sono";
 `;
 
-const Stacked = styled.div`
+const Stacked: any = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -53,11 +53,27 @@ const Stacked = styled.div`
     color: var(--color-grey-500);
     font-size: 1.2rem;
   }
+
+  @media only screen and (max-width: 500px) {
+    ${(props: any) =>
+      props.type === "date" &&
+      css`
+        display: none;
+      `}
+  }
 `;
 
-const Amount = styled.div`
+const Amount: any = styled.div`
   font-family: "Sono";
   font-weight: 500;
+
+  @media only screen and (max-width: 500px) {
+    ${(props: any) =>
+      props.type === "amount" &&
+      css`
+        display: none;
+      `}
+  }
 `;
 
 function BookingRow({
@@ -110,7 +126,7 @@ function BookingRow({
           {/* <span>{email}</span> */}
         </Stacked>
 
-        <Stacked>
+        <Stacked type="date">
           <span>
             {isToday(new Date(startDate))
               ? "Today"
@@ -125,7 +141,7 @@ function BookingRow({
 
         <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
-        <Amount>{formatCurrency(totalPrice)}</Amount>
+        <Amount type="amount">{formatCurrency(totalPrice)}</Amount>
 
         <Menus.Menu>
           <Menus.Toggle id={bookingId} />

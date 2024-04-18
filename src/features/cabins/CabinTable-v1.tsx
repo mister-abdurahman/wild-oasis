@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Spinner from "../../ui/Spinner";
 import Table, { StyledTable } from "../../ui/Table";
 // import { CabinRow } from "./CabinRow";
@@ -32,6 +32,21 @@ const TableHeader = styled.header`
   font-weight: 600;
   color: var(--color-grey-600);
   padding: 1.6rem 2.4rem;
+`;
+
+const TableHeaderDiv: any = styled.div`
+  @media only screen and (max-width: 500px) {
+    ${(props: any) =>
+      props.type === "capacity" &&
+      css`
+        display: none;
+      `}
+    ${(props: any) =>
+      props.type === "discount" &&
+      css`
+        display: none;
+      `}
+  }
 `;
 
 // We want each table row to have a menu, and we only want one of them to be open at the same time. We also want this functionality to be reusable. We could add a openID state here to the table, but that wouldn't really be reusable... The best way is to use a compound component
@@ -100,12 +115,12 @@ function CabinTable() {
     <Menus>
       <Table columns={"0.6fr 1.8fr 2.2fr 1fr 1fr 1fr"}>
         <Table.Header>
-          <div></div>
-          <div>Cabin</div>
-          <div>Capacity</div>
-          <div>Price</div>
-          <div>Discount</div>
-          <div></div>
+          <TableHeaderDiv></TableHeaderDiv>
+          <TableHeaderDiv>Cabin</TableHeaderDiv>
+          <TableHeaderDiv type={"capacity"}>Capacity</TableHeaderDiv>
+          <TableHeaderDiv>Price</TableHeaderDiv>
+          <TableHeaderDiv type="discount">Discount</TableHeaderDiv>
+          <TableHeaderDiv></TableHeaderDiv>
         </Table.Header>
         {/* using render props */}
         <Table.Body

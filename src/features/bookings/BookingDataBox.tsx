@@ -31,6 +31,13 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  @media only screen and (max-width: 500px) {
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    padding: 1.4rem 2.2rem;
+    justify-content: center;
+  }
+
   svg {
     height: 3.2rem;
     width: 3.2rem;
@@ -63,13 +70,19 @@ const Guest = styled.div`
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
 
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+  }
+
   & p:first-of-type {
     font-weight: 500;
     color: var(--color-grey-700);
   }
 `;
 
-const Price:any = styled.div`
+const Price: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,9 +90,14 @@ const Price:any = styled.div`
   border-radius: var(--border-radius-sm);
   margin-top: 2.4rem;
 
+  @media only screen and (max-width: 500px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   background-color: ${(props: any) =>
     props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
-  color: ${(props:any) =>
+  color: ${(props: any) =>
     props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
   & p:last-child {
@@ -102,7 +120,7 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-function BookingDataBox({ booking }:any) {
+function BookingDataBox({ booking }: any) {
   const {
     created_at,
     startDate,

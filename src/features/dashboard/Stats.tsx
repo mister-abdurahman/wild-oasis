@@ -5,6 +5,22 @@ import {
   HiOutlineChartBar,
 } from "react-icons/hi2";
 import Stat from "./Stat";
+import styled from "styled-components";
+
+const StyledStatsContainer = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; */
+
+  @media only screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.4rem;
+  }
+`;
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }: any) {
   // Stat 1)
@@ -27,7 +43,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }: any) {
     (numDays * cabinCount);
 
   return (
-    <>
+    <StyledStatsContainer>
       <Stat
         icon={<HiOutlineBriefcase />}
         title="Bookings"
@@ -52,7 +68,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }: any) {
         value={Math.round(occupation * 100) + "%"}
         color="yellow"
       />
-    </>
+    </StyledStatsContainer>
   );
 }
 

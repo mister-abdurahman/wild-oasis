@@ -10,6 +10,11 @@ const StyledCheckbox = styled.div`
     outline-offset: 2px;
     transform-origin: 0;
     accent-color: var(--color-brand-600);
+
+    @media only screen and (max-width: 500px) {
+      height: 1.6rem;
+      width: 1.6rem;
+    }
   }
 
   & input[type="checkbox"]:disabled {

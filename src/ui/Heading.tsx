@@ -26,6 +26,10 @@ const Heading: any = styled.h1`
       font-weight: 600;
       text-align: center;
     `}
+
+    @media only screen and (max-width: 500px) {
+    font-size: 1.75rem;
+  }
 `;
 
 export default Heading;

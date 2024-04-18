@@ -11,7 +11,7 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const FilterButton:any = styled.button`
+const FilterButton: any = styled.button`
   background-color: var(--color-grey-0);
   border: none;
 
@@ -28,6 +28,10 @@ const FilterButton:any = styled.button`
   /* To give the same height as select */
   padding: 0.44rem 0.8rem;
   transition: all 0.3s;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 
   &:hover:not(:disabled) {
     background-color: var(--color-brand-600);

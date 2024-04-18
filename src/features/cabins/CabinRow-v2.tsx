@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { HiPencil, HiTrash, HiSquare2Stack } from "react-icons/hi2";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 
@@ -49,6 +49,17 @@ const Cabin = styled.div`
   font-family: "Sono";
 `;
 
+const Capacity = styled.div`
+  @media only screen and (max-width: 500px) {
+    display: none;
+    /* ${(props: any) =>
+      props.type === "capacity" &&
+      css`
+        display: none;
+      `} */
+  }
+`;
+
 const Price = styled.div`
   font-family: "Sono";
   font-weight: 600;
@@ -58,6 +69,16 @@ const Discount = styled.div`
   font-family: "Sono";
   font-weight: 500;
   color: var(--color-green-700);
+
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
+`;
+
+const DiscountSpan = styled.span`
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 // function CabinRow({ cabin }) {
@@ -186,9 +207,13 @@ export function CabinRow({ cabin }: any) {
       <Table.Row>
         <Img src={image}></Img>
         <Cabin>{name}</Cabin>
-        <div>Fits up to {maxCapacity}</div>
+        <Capacity>Fits up to {maxCapacity}</Capacity>
         <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? <Discount>{discount}</Discount> : <span>&mdash;</span>}
+        {discount ? (
+          <Discount>{discount}</Discount>
+        ) : (
+          <DiscountSpan>&mdash;</DiscountSpan>
+        )}
         <div>
           <Modal>
             <Menus.Menu>

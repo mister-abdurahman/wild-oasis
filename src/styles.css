@@ -115,3 +115,15 @@ h1 {
   font-size: 14px;
   color: rebeccapurple;
 }
+
+.icon {
+  background-color: aqua;
+  fill: blue;
+}
+@media only screen and (max-width: 1024px) {
+  .icon {
+    fill: blue;
+    width: 3rem;
+    background-color: rgb(174, 255, 0);
+  }
+}

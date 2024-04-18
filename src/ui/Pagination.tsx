@@ -17,6 +17,10 @@ const P = styled.p`
   & span {
     font-weight: 600;
   }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+  }
 `;
 
 const Buttons = styled.div`
@@ -58,12 +62,21 @@ const PaginationButton = styled.button`
     background-color: var(--color-brand-600);
     color: var(--color-brand-50);
   }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+
+    & svg {
+      height: 1.4rem;
+      width: 1.4rem;
+    }
+  }
 `;
 
 // const RES_PER_PAGE = 10;
 
 export const Pagination = ({ count }: { count: number }) => {
-  const [searchParams, setSearchParams]:any = useSearchParams();
+  const [searchParams, setSearchParams]: any = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));

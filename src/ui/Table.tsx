@@ -16,6 +16,10 @@ export const CommonRow = styled.header`
   column-gap: 2.4rem;
   align-items: center;
   transition: none;
+
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: 0.6fr 1fr 1.4fr 0.4fr;
+  }
 `;
 
 export const StyledHeader: any = styled(CommonRow)`
@@ -49,6 +53,10 @@ export const Footer = styled.footer`
 
   &:not(:has(*)) {
     display: none;
+  }
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
   }
 `;
 

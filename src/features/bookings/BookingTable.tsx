@@ -1,4 +1,4 @@
-// import styled from 'styled-components';
+import styled, { css } from "styled-components";
 import BookingRow from "./BookingRow";
 import Spinner from "../../ui/Spinner";
 import Table from "../../ui/Table";
@@ -30,6 +30,21 @@ import { Pagination } from "../../ui/Pagination";
 // `;
 
 // We want each table row to have a menu, and we only want one of them to be open at the same time. We also want this functionality to be reusable. We could add a openID state here to the table, but that wouldn't really be reusable... The best way is to use a compound component
+
+const TableHeaderDiv: any = styled.div`
+  @media only screen and (max-width: 500px) {
+    ${(props: any) =>
+      props.type === "date" &&
+      css`
+        display: none;
+      `}
+    ${(props: any) =>
+      props.type === "amount" &&
+      css`
+        display: none;
+      `}
+  }
+`;
 
 function BookingTable() {
   const { bookings, error, isLoading, count } = useBookings();
@@ -73,14 +88,14 @@ function BookingTable() {
   return (
     <Menus>
       {/* A beautiful API we created here! We could even have defined the widths on the columns in the table header individually, but this keeps it simpler, and I also really like it */}
-      <Table columns="0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem">
+      <Table columns="0.6fr 2fr 2.4fr 1.4fr 1fr 1fr">
         <Table.Header>
-          <div>Cabin</div>
-          <div>Guest</div>
-          <div>Dates</div>
-          <div>Status</div>
-          <div>Amount</div>
-          <div></div>
+          <TableHeaderDiv>Cabin</TableHeaderDiv>
+          <TableHeaderDiv>Guest</TableHeaderDiv>
+          <TableHeaderDiv type="date">Dates</TableHeaderDiv>
+          <TableHeaderDiv>Status</TableHeaderDiv>
+          <TableHeaderDiv type="amount">Amount</TableHeaderDiv>
+          <TableHeaderDiv></TableHeaderDiv>
         </Table.Header>
 
         {/* {filteredBookings.map((booking) => (

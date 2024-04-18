@@ -22,6 +22,10 @@ import { useSettings } from "../settings/useSettings";
 const Box = styled.div`
   ${box}
   padding: 2.4rem 4rem;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1.15rem;
+  }
 `;
 
 function CheckinBooking() {

@@ -9,6 +9,7 @@ import {
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { useEffect, useState } from "react";
 
 const ChartBox = styled.div`
   /* Box */
@@ -25,6 +26,55 @@ const ChartBox = styled.div`
 
   & .recharts-pie-label-text {
     font-weight: 600;
+  }
+  @media only screen and (max-width: 1024px) {
+    padding: 1.6rem 1.8rem;
+  }
+  @media only screen and (max-width: 500px) {
+    grid-column: 1 / 2;
+    padding: 1rem 1.2rem;
+    /* max-width: 50rem; */
+  }
+`;
+
+const StyledResponsiveContainer = styled(ResponsiveContainer)`
+  max-width: 60rem;
+  height: auto;
+
+  @media only screen and (max-width: 1024px) {
+    max-width: 50rem;
+  }
+  @media only screen and (max-width: 500px) {
+    max-width: 100%;
+    /* width: 36rem; */
+    margin: 0 auto;
+    padding: 0;
+  }
+`;
+
+const StyledLegend = styled(Legend)`
+  align-self: "right";
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  /* layout: "vertical"; */
+  /* iconsize: 15; */
+  /* icontype: "circle";*/
+`;
+
+const StyledPieChart = styled(PieChart)`
+  max-width: 100%;
+  /* max-width: 26rem; */
+  /* margin-left:  1.2rem; */
+  /* margin: 0; */
+  /* margin: 0 auto; */
+
+  @media only screen and (max-width: 500px) {
+    min-width: 100%;
+    /* max-width: 80%; */
+    margin: 0 auto;
+    // margin-left: 2.5rem;
+    font-size: 1rem;
   }
 `;
 
@@ -153,15 +203,16 @@ const DurationChart = ({ confirmedStays }: { confirmedStays: any }) => {
     <ChartBox>
       <Heading as="h2">Stay duration Summary</Heading>
 
-      <ResponsiveContainer width={"100%"} height={240}>
-        <PieChart>
+      {/* <ResponsiveContainer width={"100%"} height={240}> */}
+      <StyledResponsiveContainer>
+        <StyledPieChart>
           <Pie
             data={data}
             nameKey={"duration"}
             dataKey={"value"}
             innerRadius={85}
-            outerRadius={110}
-            cx="40%"
+            outerRadius={100}
+            cx="50%"
             cy="50%"
             paddingAngle={3}
           >
@@ -177,13 +228,13 @@ const DurationChart = ({ confirmedStays }: { confirmedStays: any }) => {
           <Legend
             verticalAlign="middle"
             align="right"
-            width={130}
+            width={window.innerWidth < 500 ? 80 : 125}
             layout="vertical"
-            iconSize={15}
+            iconSize={10}
             iconType="circle"
           />
-        </PieChart>
-      </ResponsiveContainer>
+        </StyledPieChart>
+      </StyledResponsiveContainer>
     </ChartBox>
   );
 };

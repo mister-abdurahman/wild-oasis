@@ -18,6 +18,11 @@ const StyledTodayItem = styled.li`
   &:first-child {
     border-top: 1px solid var(--color-grey-100);
   }
+
+  @media only screen and (max-width: 1024px) {
+    grid-template-columns: 8rem 2rem 1fr 9rem;
+    gap: 0.3rem;
+  }
   /* &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
   } */
@@ -25,6 +30,14 @@ const StyledTodayItem = styled.li`
 
 const Guest = styled.div`
   font-weight: 500;
+`;
+
+const StyledDiv = styled.div`
+  display: block;
+
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 function TodayItem({
@@ -68,7 +81,7 @@ function TodayItem({
       </Tag>
       <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
       <Guest>{guests.fullName}</Guest>
-      <div>{numNights} nights</div>
+      <StyledDiv>{numNights} nights</StyledDiv>
 
       {statusToAction[status].button}
     </StyledTodayItem>

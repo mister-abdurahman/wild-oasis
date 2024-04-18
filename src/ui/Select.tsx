@@ -12,12 +12,16 @@ const StyledSelect = styled.select`
   background-color: var(--color-grey-0);
   font-weight: 500;
   box-shadow: var(--shadow-sm);
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 `;
 
-const Select = ({ options, value, ...props }:any) => {
+const Select = ({ options, value, ...props }: any) => {
   return (
     <StyledSelect value={value} {...props}>
-      {options.map((opt:{value:string, label:string}) => (
+      {options.map((opt: { value: string; label: string }) => (
         <option value={opt.value} key={opt.value}>
           {opt.label}
         </option>
