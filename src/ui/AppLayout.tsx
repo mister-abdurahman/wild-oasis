@@ -53,7 +53,7 @@ const Container = styled.div`
 `;
 
 const AppLayout = () => {
-  const [openHamburger, setOpenHamburger] = useState(false);
+  const [openHamburger, setOpenHamburger] = useState(true);
 
   return (
     <StyledAppLayout hamburger={openHamburger}>
