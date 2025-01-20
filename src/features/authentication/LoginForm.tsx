@@ -7,12 +7,12 @@ import useLogin from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function LoginForm() {
-  const [email, setEmail] = useState("aramide@gmail.com");
-  const [password, setPassword] = useState("aramide");
+  const [email, setEmail] = useState("fluffysnackslimited@gmail.com");
+  const [password, setPassword] = useState("Password@1#");
 
   const { login, isPending } = useLogin();
 
-  function handleSubmit(e:FormEvent) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!email || !password) return null;
 
